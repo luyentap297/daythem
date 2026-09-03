@@ -4,17 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Hệ Thống Quản Lý Giáo Dục - TRUNG TÂM HOA MAI</title>
-  <!-- Google Fonts & CDN -->
+  
+  <!-- Tối ưu nạp Fonts & Icons không chặn Render -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
   <script>
-    
     tailwind.config = {
       theme: {
         extend: {
@@ -245,9 +246,8 @@
 
       <div class="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8 space-y-6 custom-scrollbar w-full min-w-0" id="mainContainer">
         
-        <!-- ================= 1. DASHBOARD QUẢN TRỊ VIÊN ================= -->
+        <!-- 1. DASHBOARD QUẢN TRỊ VIÊN -->
         <div id="viewDashboard" class="space-y-6 w-full min-w-0">
-          <!-- BANNER CHÀO MỪNG ADMIN TÍCH HỢP LỊCH TRONG NGÀY -->
           <div class="relative overflow-hidden bg-gradient-to-r from-blue-900 via-indigo-900 to-[#1D3E74] p-6 sm:p-7 rounded-[2rem] text-white shadow-xl flex flex-wrap justify-between items-center gap-4 border border-blue-400/30">
             <div class="relative z-10">
               <span class="inline-block bg-white/20 backdrop-blur-md px-3 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider text-amber-300 mb-2">Hệ Thống Quản Trị Trung Tâm Hoa Mai</span>
@@ -269,7 +269,6 @@
             <div class="absolute -right-12 -bottom-12 w-48 h-48 bg-amber-400/10 rounded-full blur-2xl pointer-events-none"></div>
           </div>
 
-          <!-- BANNER CẢNH BÁO TƯƠNG TÁC -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
             <div onclick="openMissingAttModal()" class="bg-amber-50 border-2 border-amber-300 p-4 rounded-2xl flex items-center justify-between cursor-pointer hover:bg-amber-100/80 transition shadow-sm group">
               <div class="flex items-center gap-3">
@@ -298,10 +297,8 @@
             </div>
           </div>
 
-          <!-- DÀN 6 THẺ KPI TÍCH HỢP CHỈ SỐ TĂNG/GIẢM -->
+          <!-- DÀN 6 THẺ KPI -->
           <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-3.5 w-full">
-            
-            <!-- 1. HỌC SINH -->
             <div class="relative overflow-hidden bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 p-4 rounded-[1.75rem] shadow-xl text-white hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
               <div>
                 <div class="flex items-center justify-between text-blue-100">
@@ -315,7 +312,6 @@
               <div id="kpiStudentsTrend" class="mt-2 text-[10px] w-fit">--</div>
             </div>
 
-            <!-- 2. ĐÃ THU -->
             <div class="relative overflow-hidden bg-gradient-to-br from-emerald-500 via-emerald-600 to-teal-800 p-4 rounded-[1.75rem] shadow-xl text-white cursor-pointer hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300 flex flex-col justify-between" onclick="navigateView('hocphi')">
               <div>
                 <div class="flex items-center justify-between text-emerald-100">
@@ -329,7 +325,6 @@
               <div id="kpiPaidTrend" class="mt-2 text-[10px] w-fit">--</div>
             </div>
 
-            <!-- 3. CÔNG NỢ -->
             <div class="relative overflow-hidden bg-gradient-to-br from-rose-500 via-rose-600 to-red-800 p-4 rounded-[1.75rem] shadow-xl text-white cursor-pointer hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300 flex flex-col justify-between" onclick="openDebtModal()">
               <div>
                 <div class="flex items-center justify-between text-rose-100">
@@ -343,7 +338,6 @@
               <div id="kpiDebtTrend" class="mt-2 text-[10px] w-fit">--</div>
             </div>
 
-            <!-- 4. DOANH THU -->
             <div class="relative overflow-hidden bg-gradient-to-br from-indigo-600 via-indigo-700 to-blue-900 p-4 rounded-[1.75rem] shadow-xl text-white cursor-pointer hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300 flex flex-col justify-between" onclick="navigateView('thuchi')">
               <div>
                 <div class="flex items-center justify-between text-indigo-100">
@@ -357,7 +351,6 @@
               <div id="kpiRevenueTrend" class="mt-2 text-[10px] w-fit">--</div>
             </div>
 
-            <!-- 5. TỔNG CHI -->
             <div class="relative overflow-hidden bg-gradient-to-br from-amber-500 via-amber-600 to-orange-800 p-4 rounded-[1.75rem] shadow-xl text-white cursor-pointer hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300 flex flex-col justify-between" onclick="navigateView('thuchi')">
               <div>
                 <div class="flex items-center justify-between text-amber-100">
@@ -371,7 +364,6 @@
               <div id="kpiExpenseTrend" class="mt-2 text-[10px] w-fit">--</div>
             </div>
 
-            <!-- 6. LỢI NHUẬN -->
             <div class="relative overflow-hidden bg-gradient-to-br from-purple-600 via-purple-700 to-fuchsia-900 p-4 rounded-[1.75rem] shadow-xl text-white hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between" id="kpiProfitCard">
               <div>
                 <div class="flex items-center justify-between text-purple-100">
@@ -384,7 +376,6 @@
               </div>
               <div id="kpiProfitTrend" class="mt-2 text-[10px] w-fit">--</div>
             </div>
-
           </div>
 
           <!-- BIẾN ĐỘNG HỌC SINH & BIỂU ĐỒ 12 THÁNG -->
@@ -443,7 +434,7 @@
             </div>
           </div>
 
-          <!-- CẢNH BÁO: CHUYÊN CẦN / LƯƠNG GV / ALERT -->
+          <!-- CẢNH BÁO / LƯƠNG GV -->
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
             <div class="bg-white p-5 rounded-3xl border border-slate-200 shadow-sm cursor-pointer hover:shadow-md transition" onclick="openMissingAttModal()">
               <h4 class="text-xs font-black text-[#1D3E74] uppercase tracking-wider mb-2">Chuyên Cần Toàn Trường</h4>
@@ -475,7 +466,7 @@
             </div>
           </div>
 
-          <!-- HỌC SINH CẦN CHÚ Ý & NHẬT KÝ HOẠT ĐỘNG -->
+          <!-- HỌC SINH CẦN CHÚ Ý & NHẬT KÝ -->
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full">
             <div class="bg-white p-6 rounded-[2rem] border-2 border-amber-300 shadow-sm space-y-4">
               <h4 class="text-xs font-black text-amber-900 uppercase tracking-wider flex items-center gap-2">
@@ -511,7 +502,7 @@
           </div>
         </div>
 
-        <!-- ================= VIEW DASHBOARD GIÁO VIÊN ================= -->
+        <!-- 2. DASHBOARD GIÁO VIÊN -->
         <div id="viewTeacherDashboard" class="space-y-6 hidden w-full min-w-0">
           <div class="relative overflow-hidden bg-gradient-to-r from-blue-900 via-indigo-900 to-[#1D3E74] p-6 sm:p-7 rounded-[2rem] text-white shadow-xl flex flex-wrap justify-between items-center gap-4 border border-blue-400/30">
             <div class="relative z-10">
@@ -626,7 +617,7 @@
           </div>
         </div>
 
-        <!-- ================= 2. QUẢN LÝ HỌC SINH ================= -->
+        <!-- 3. QUẢN LÝ HỌC SINH -->
         <div id="viewHocSinh" class="space-y-5 hidden w-full min-w-0">
           <div class="bg-white p-5 rounded-3xl border border-slate-200 shadow-sm flex flex-wrap justify-between items-center gap-4">
             <div class="flex items-center gap-2 flex-1 max-w-md w-full">
@@ -648,7 +639,7 @@
           </div>
         </div>
 
-        <!-- ================= 3. QUẢN LÝ LỚP HỌC ================= -->
+        <!-- 4. QUẢN LÝ LỚP HỌC -->
         <div id="viewLopHoc" class="space-y-6 hidden w-full min-w-0">
           <div class="bg-white p-5 rounded-3xl border border-slate-200 shadow-sm flex flex-wrap justify-between items-center gap-4">
             <div class="flex items-center gap-3">
@@ -701,7 +692,7 @@
           </div>
         </div>
 
-        <!-- ================= 4. ĐIỂM DANH ================= -->
+        <!-- 5. ĐIỂM DANH -->
         <div id="viewDiemDanh" class="space-y-5 max-w-2xl mx-auto hidden w-full">
           <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-4">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -725,7 +716,7 @@
           <button type="button" onclick="submitAttendance()" class="w-full bg-[#1D3E74] text-white font-extrabold py-3.5 rounded-2xl text-xs shadow-md">💾 LƯU ĐIỂM DANH LỚP HỌC</button>
         </div>
 
-        <!-- ================= 5. HỌC PHÍ ================= -->
+        <!-- 6. HỌC PHÍ (CÓ THU HÀNG LOẠT) -->
         <div id="viewHocPhi" class="space-y-5 hidden w-full min-w-0">
           <div class="bg-white p-5 rounded-3xl border border-slate-200 shadow-sm flex flex-wrap justify-between items-center gap-4">
             <div class="flex flex-wrap items-center gap-3">
@@ -736,7 +727,7 @@
             </div>
             <div class="flex flex-wrap gap-2">
               <button type="button" id="btnBulkPay" onclick="openBulkPayModal()" class="hidden bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2.5 rounded-xl text-xs font-black shadow transition">
-                <i class="fa-solid fa-money-bill-wave mr-1"></i>Thu Tiền Các Mục Đã Chọn (<span id="selectedTuitionCount">0</span>)
+                <i class="fa-solid fa-money-bill-wave mr-1"></i>Thu Tiền Đã Chọn (<span id="selectedTuitionCount">0</span>)
               </button>
               <button type="button" onclick="openApplyTuitionModal()" class="bg-[#1D3E74] hover:bg-blue-900 text-white px-4 py-2.5 rounded-xl text-xs font-bold shadow transition"><i class="fa-solid fa-file-invoice-dollar mr-1"></i>Áp Dụng Cho Cả Lớp</button>
               <button type="button" onclick="exportTuitionExcel()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2.5 rounded-xl text-xs font-bold shadow transition"><i class="fa-solid fa-file-excel mr-1"></i>Xuất Excel</button>
@@ -764,7 +755,7 @@
           </div>
         </div>
 
-        <!-- ================= 6. BẢNG LƯƠNG GIÁO VIÊN ================= -->
+        <!-- 7. BẢNG LƯƠNG GIÁO VIÊN -->
         <div id="viewGiaoVien" class="space-y-6 hidden w-full min-w-0">
           <div class="bg-white p-5 rounded-3xl border border-slate-200 shadow-sm flex justify-between items-center">
             <h3 class="text-xs font-extrabold text-[#1D3E74] uppercase">BẢNG TÍNH LƯƠNG GIÁO VIÊN (72%)</h3>
@@ -773,7 +764,7 @@
           <div id="teacherPayrollContainer" class="space-y-4 w-full"></div>
         </div>
 
-        <!-- ================= 7. SỔ QUỸ ================= -->
+        <!-- 8. SỔ QUỸ -->
         <div id="viewThuChi" class="space-y-5 hidden w-full min-w-0">
           <div class="bg-white p-5 rounded-3xl border border-slate-200 shadow-sm flex justify-between items-center">
             <h3 class="text-xs font-extrabold text-[#1D3E74] uppercase">SỔ QUỸ THU - CHI</h3>
@@ -789,7 +780,7 @@
           </div>
         </div>
 
-        <!-- ================= 8. LỚP ĐANG DẠY CỦA GV ================= -->
+        <!-- 9. LỚP ĐANG DẠY CỦA GV -->
         <div id="viewGiaoVienLop" class="hidden space-y-5 w-full min-w-0">
           <div class="bg-white p-5 rounded-3xl border border-slate-200 shadow-sm">
             <h3 class="text-sm font-extrabold text-[#1D3E74] uppercase flex items-center gap-2"><i class="fa-solid fa-chalkboard-user"></i> Danh Sách Lớp Đang Giảng Dạy</h3>
@@ -798,7 +789,7 @@
           <div id="teacherClassesContainer" class="space-y-4"></div>
         </div>
 
-        <!-- ================= 9. QUẢN LÝ THÔNG BÁO ================= -->
+        <!-- 10. QUẢN LÝ THÔNG BÁO -->
         <div id="viewThongBao" class="space-y-5 hidden w-full min-w-0">
           <div class="bg-white p-5 rounded-3xl border border-slate-200 shadow-sm flex flex-wrap justify-between items-center gap-4">
             <div>
@@ -834,7 +825,7 @@
 
   <!-- ================= TOÀN BỘ CÁC MODAL HỆ THỐNG ================= -->
 
-  <!-- 1. MODAL CHƯA ĐIỂM DANH HÔM NAY -->
+  <!-- 1. MODAL CHƯA ĐIỂM DANH -->
   <div id="missingAttModal" class="hidden fixed inset-0 bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
     <div class="bg-white rounded-3xl max-w-md w-full p-6 space-y-4 shadow-2xl">
       <div class="flex justify-between items-center border-b pb-3">
@@ -850,7 +841,7 @@
     </div>
   </div>
 
-  <!-- 2. MODAL DANH SÁCH NỢ HỌC PHÍ -->
+  <!-- 2. MODAL CÔNG NỢ -->
   <div id="debtModal" onclick="if(event.target === this) closeDebtModal()" class="hidden fixed inset-0 bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
     <div class="bg-white rounded-3xl max-w-lg w-full p-6 space-y-4 shadow-2xl relative">
       <div class="flex justify-between items-center border-b border-slate-100 pb-3">
@@ -875,7 +866,7 @@
     </div>
   </div>
 
-  <!-- 3. MODAL ĐĂNG THÔNG BÁO MỚI -->
+  <!-- 3. MODAL ĐĂNG THÔNG BÁO -->
   <div id="createNoticeModal" class="hidden fixed inset-0 bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
     <div class="bg-white rounded-3xl max-w-md w-full p-6 space-y-4 shadow-2xl border border-slate-100">
       <div class="flex justify-between items-center border-b pb-3">
@@ -906,7 +897,7 @@
     </div>
   </div>
 
-  <!-- 4. MODAL CHỈNH SỬA HỌC PHÍ TỪNG HỌC SINH -->
+  <!-- 4. MODAL SỬA HỌC PHÍ HỌC SINH -->
   <div id="editStudentTuitionModal" class="hidden fixed inset-0 bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
     <div class="bg-white rounded-3xl max-w-sm w-full p-6 space-y-4 shadow-2xl border border-slate-100">
       <div class="flex justify-between items-center border-b pb-3">
@@ -961,7 +952,7 @@
   <div id="applyTuitionModal" class="hidden fixed inset-0 bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
     <div class="bg-white rounded-3xl max-w-md w-full p-6 space-y-4 shadow-2xl border border-slate-100">
       <div class="flex justify-between items-center border-b pb-3">
-        <h3 class="text-sm font-extrabold text-slate-900 flex items-center gap-2"><i class="fa-solid fa-file-invoice-dollar text-blue-700"></i> Áp Dụng Học Phí Cả Lớp</h3>
+        <h3 class="text-sm font-extrabold text-slate-900 flex items-center gap-2"><i class="fa-solid fa-file-invoice-dollar text-blue-700"></i> Áp Dụng Học Phí CẢ Lớp</h3>
         <button type="button" onclick="closeApplyTuitionModal()" class="text-slate-400 hover:text-rose-500 font-bold p-1 transition">✕</button>
       </div>
       <div class="space-y-3.5 text-xs">
@@ -1103,7 +1094,7 @@
     </div>
   </div>
 
-  <!-- 12. MODAL SỬA THÔNG TIN LỚP CHO GIÁO VIÊN -->
+  <!-- 12. MODAL SỬA LỊCH DẠY CHO GIÁO VIÊN -->
   <div id="editTeacherClassModal" class="hidden fixed inset-0 bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
     <div class="bg-white rounded-3xl max-w-sm w-full p-6 space-y-4 shadow-2xl border border-slate-100">
       <div class="flex justify-between items-center border-b pb-3">
@@ -1125,7 +1116,7 @@
   <!-- 13. MODAL CHUYỂN LỚP HỌC SINH -->
   <div id="transferClassModal" class="hidden fixed inset-0 bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
     <div class="bg-white rounded-3xl max-w-sm w-full p-6 space-y-4 shadow-2xl border border-slate-100">
-      <div class="flex justify-between items-center border-b border-slate-100 pb-3">
+      <div class="flex justify-between items-center border-b pb-3">
         <h3 class="text-sm font-extrabold text-slate-900 flex items-center gap-2">
           <i class="fa-solid fa-arrow-right-arrow-left text-amber-600"></i> Chuyển Lớp Học
         </h3>
@@ -1151,7 +1142,8 @@
       </div>
     </div>
   </div>
-<!-- MODAL THU TIỀN HỌC PHÍ HÀNG LOẠT -->
+
+  <!-- 14. MODAL THU TIỀN HỌC PHÍ HÀNG LOẠT -->
   <div id="bulkPayModal" class="hidden fixed inset-0 bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
     <div class="bg-white rounded-3xl max-w-sm w-full p-6 space-y-4 shadow-2xl border border-slate-100">
       <div class="flex justify-between items-center border-b pb-3">
@@ -1179,10 +1171,134 @@
       </div>
     </div>
   </div>
-  <!-- ================= SCRIPT ENGINE HOÀN CHỈNH ================= -->
+
+  <!-- ================= SCRIPT ENGINE HOÀN CHỈNH TỐI ƯU ================= -->
   <script>
-    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwN-UPzDipXcN9n7TGPLeJ4FHFScARpdZ7nTxxXWgEC-fAwJ7XxAgsG2fofSoZ3o5EaCQ/exec";
-const URL_THOI_KHOA_BIEU = "https://script.google.com/macros/s/AKfycbwmjQAmrqoMmry14zc3KsVW1dkT-eRknVAEtrkzqjKBUtA1WN1p8nmPStv-og3G4hjkfg/exec"; // <-- Thay link TKB của bạn vào đây
+    // BẮT BUỘC: Dán link Web App Apps Script của bạn (kết thúc bằng /exec) vào đây
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwN-UPzDipXcN9n7TGPLeJ4FHFScARpdZ7nTxxXWgEC-fAwJ7XxAgsG2fofSoZ3o5EaCQ/exec"; 
+    const URL_THOI_KHOA_BIEU = "https://script.google.com/macros/s/AKfycbwmjQAmrqoMmry14zc3KsVW1dkT-eRknVAEtrkzqjKBUtA1WN1p8nmPStv-og3G4hjkfg/exec";
+
+    // ----------------------------------------------------
+    // BRIDGE HTTP PROXY & BỘ NHỚ ĐỆM CLIENT (CACHE 3 PHÚT)
+    // ----------------------------------------------------
+    const memoryCache = new Map();
+    const pendingRequests = new Map();
+    const CACHE_TTL = 3 * 60 * 1000; // 3 phút
+
+    const lazyResources = {};
+
+    function loadScriptOnce(key, src) {
+      if (window[key]) return Promise.resolve(window[key]);
+      if (lazyResources[key]) return lazyResources[key];
+
+      lazyResources[key] = new Promise((resolve, reject) => {
+        const existing = document.querySelector(`script[data-lazy="${key}"]`);
+        if (existing) {
+          existing.addEventListener('load', () => resolve(window[key]));
+          existing.addEventListener('error', reject);
+          return;
+        }
+        const script = document.createElement('script');
+        script.src = src;
+        script.async = true;
+        script.dataset.lazy = key;
+        script.onload = () => resolve(window[key]);
+        script.onerror = () => {
+          delete lazyResources[key];
+          reject(new Error(`Không thể tải thư viện ${key}`));
+        };
+        document.head.appendChild(script);
+      });
+      return lazyResources[key];
+    }
+
+    function ensureChartJs() {
+      return loadScriptOnce('Chart', 'https://cdn.jsdelivr.net/npm/chart.js');
+    }
+
+    function ensureXlsx() {
+      return loadScriptOnce('XLSX', 'https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js');
+    }
+
+    const google = {
+      script: {
+        run: {
+          withSuccessHandler(cb) { this._success = cb; return this; },
+          withFailureHandler(cb) { this._failure = cb; return this; }
+        }
+      }
+    };
+
+    google.script.run = new Proxy(google.script.run, {
+      get(target, prop) {
+        if (prop in target) return target[prop];
+
+        return function (...args) {
+          const onSuccess = target._success || (() => {});
+          const onFailure = target._failure || console.error;
+          target._success = null;
+          target._failure = null;
+
+          const readOnlyActions = new Set([
+            'getClasses', 'getStudents', 'getDashboardData',
+            'getTeacherDashboardData', 'getMonthlyTuition', 'getTeachers',
+            'getSystemLogs', 'getAnnouncements'
+          ]);
+
+          const isReadOnly = readOnlyActions.has(prop);
+          const cacheKey = prop + ':' + JSON.stringify(args);
+
+          if (isReadOnly) {
+            const cached = memoryCache.get(cacheKey);
+            if (cached && (Date.now() - cached.time < CACHE_TTL)) {
+              queueMicrotask(() => onSuccess(cached.data));
+              return;
+            }
+
+            const pending = pendingRequests.get(cacheKey);
+            if (pending) {
+              pending.then(onSuccess).catch(onFailure);
+              return;
+            }
+          }
+
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 25000);
+
+          const requestPromise = fetch(APPS_SCRIPT_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify({ action: prop, args }),
+            signal: controller.signal,
+            cache: 'no-store'
+          })
+          .then(res => {
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            return res.json();
+          })
+          .then(data => {
+            if (isReadOnly && data && data.success) {
+              memoryCache.set(cacheKey, { time: Date.now(), data });
+            } else if (!isReadOnly) {
+              memoryCache.clear();
+            }
+            return data;
+          })
+          .finally(() => {
+            clearTimeout(timeoutId);
+            if (isReadOnly) pendingRequests.delete(cacheKey);
+          });
+
+          if (isReadOnly) pendingRequests.set(cacheKey, requestPromise);
+
+          requestPromise.then(onSuccess).catch(onFailure);
+        };
+      }
+    });
+
+    // ----------------------------------------------------
+    // BIẾN TOÀN CỤC & LOGIC GIAO DIỆN
+    // ----------------------------------------------------
     let currentUser = null;
     let currentView = 'dashboard';
     let chartStudentGrowthInst = null;
@@ -1198,6 +1314,7 @@ const URL_THOI_KHOA_BIEU = "https://script.google.com/macros/s/AKfycbwmjQAmrqoMm
     let currentTeacherEditClass = null;
     let currentAttendanceList = [];
     let currentTransferData = null;
+    let currentLoadedTuitionList = [];
 
     document.addEventListener('DOMContentLoaded', function() {
       const now = new Date();
@@ -1212,6 +1329,18 @@ const URL_THOI_KHOA_BIEU = "https://script.google.com/macros/s/AKfycbwmjQAmrqoMm
       const parentSel = document.getElementById('parentMonthSelect');
       if (globalSel) globalSel.value = defaultMonthTag;
       if (parentSel) parentSel.value = defaultMonthTag;
+
+      const savedUser = localStorage.getItem('hm_user');
+      if (savedUser) {
+        try {
+          currentUser = JSON.parse(savedUser);
+          document.getElementById('loginScreen').classList.add('hidden');
+          document.getElementById('appScreen').classList.remove('hidden');
+          setupAppForUser();
+        } catch(e) {
+          localStorage.removeItem('hm_user');
+        }
+      }
 
       const loginInputs = [document.getElementById('loginUsername'), document.getElementById('loginPassword')];
       loginInputs.forEach(input => {
@@ -1260,7 +1389,7 @@ const URL_THOI_KHOA_BIEU = "https://script.google.com/macros/s/AKfycbwmjQAmrqoMm
         { id: 'giaovien', label: '6. Bảng Lương Giáo Viên', icon: 'fa-chalkboard-user' },
         { id: 'thuchi', label: '7. Sổ Quỹ Thu - Chi', icon: 'fa-wallet' },
         { id: 'thongbao', label: '8. Quản Lý Thông Báo', icon: 'fa-bullhorn' },
-        { id: 'tkb', label: '9. Quản Lý & Xếp TKB', icon: 'fa-calendar-days', isExternal: true } // <-- Mục số 9
+        { id: 'tkb', label: '9. Quản Lý & Xếp TKB', icon: 'fa-calendar-days', isExternal: true }
       ],
       'TEACHER': [
         { id: 'teacherDashboard', label: 'Dashboard Giáo Viên', icon: 'fa-gauge-high' },
@@ -1483,6 +1612,7 @@ const URL_THOI_KHOA_BIEU = "https://script.google.com/macros/s/AKfycbwmjQAmrqoMm
           btn.disabled = false;
           if (res && res.success) {
             currentUser = res.user;
+            localStorage.setItem('hm_user', JSON.stringify(currentUser));
             document.getElementById('loginScreen').classList.add('hidden');
             document.getElementById('appScreen').classList.remove('hidden');
             setupAppForUser();
@@ -1502,6 +1632,7 @@ const URL_THOI_KHOA_BIEU = "https://script.google.com/macros/s/AKfycbwmjQAmrqoMm
 
     function handleLogout() {
       currentUser = null;
+      localStorage.removeItem('hm_user');
       document.getElementById('appScreen').classList.add('hidden');
       document.getElementById('loginScreen').classList.remove('hidden');
     }
@@ -1534,24 +1665,13 @@ const URL_THOI_KHOA_BIEU = "https://script.google.com/macros/s/AKfycbwmjQAmrqoMm
         `;
       }).join('');
 
+      loadClassesDropdown();
+
       if (currentUser.role === 'TEACHER') {
         navigateView('teacherDashboard');
       } else {
         navigateView('dashboard');
       }
-
-      const monthTag = getSelectedMonth();
-      google.script.run
-        .withSuccessHandler(function(res) {
-          if (res && res.success) {
-            globalClassesData = res.classes || [];
-            renderClassesDropdown(globalClassesData);
-            if (res.dashboard && currentUser.role !== 'TEACHER') {
-              renderDashboardUI(res.dashboard);
-            }
-          }
-        })
-        .getInitialAppData(currentUser.role, monthTag);
     }
 
     function renderClassesDropdown(classes) {
@@ -1567,85 +1687,84 @@ const URL_THOI_KHOA_BIEU = "https://script.google.com/macros/s/AKfycbwmjQAmrqoMm
     }
 
     function navigateView(viewId) {
-  // Nếu là TKB thì bỏ qua, không chuyển view nội bộ
-  if (viewId === 'tkb') return;
+      if (viewId === 'tkb') return;
 
-  currentView = viewId;
-  document.querySelectorAll('#sidebarMenu button').forEach(b => {
-    b.classList.remove('bg-blue-700', 'text-white', 'shadow-md');
-    b.classList.add('text-slate-400');
-  });
-  const activeBtn = document.getElementById(`nav_${viewId}`);
-  if (activeBtn) {
-    activeBtn.classList.remove('text-slate-400');
-    activeBtn.classList.add('bg-blue-700', 'text-white', 'shadow-md');
-  }
+      currentView = viewId;
+      document.querySelectorAll('#sidebarMenu button').forEach(b => {
+        b.classList.remove('bg-blue-700', 'text-white', 'shadow-md');
+        b.classList.add('text-slate-400');
+      });
+      const activeBtn = document.getElementById(`nav_${viewId}`);
+      if (activeBtn) {
+        activeBtn.classList.remove('text-slate-400');
+        activeBtn.classList.add('bg-blue-700', 'text-white', 'shadow-md');
+      }
 
-  if (window.innerWidth < 768) {
-    const sidebar = document.getElementById('sidebarNav');
-    const backdrop = document.getElementById('mobileBackdrop');
-    if (sidebar) sidebar.classList.add('-translate-x-full');
-    if (backdrop) backdrop.classList.add('hidden');
-  }
+      if (window.innerWidth < 768) {
+        const sidebar = document.getElementById('sidebarNav');
+        const backdrop = document.getElementById('mobileBackdrop');
+        if (sidebar) sidebar.classList.add('-translate-x-full');
+        if (backdrop) backdrop.classList.add('hidden');
+      }
 
-  const views = ['viewDashboard', 'viewTeacherDashboard', 'viewHocSinh', 'viewLopHoc', 'viewDiemDanh', 'viewHocPhi', 'viewThuChi', 'viewGiaoVien', 'viewGiaoVienLop', 'viewThongBao'];
-  views.forEach(v => {
-    const el = document.getElementById(v);
-    if (el) el.classList.add('hidden');
-  });
+      const views = ['viewDashboard', 'viewTeacherDashboard', 'viewHocSinh', 'viewLopHoc', 'viewDiemDanh', 'viewHocPhi', 'viewThuChi', 'viewGiaoVien', 'viewGiaoVienLop', 'viewThongBao'];
+      views.forEach(v => {
+        const el = document.getElementById(v);
+        if (el) el.classList.add('hidden');
+      });
 
-  if (viewId === 'dashboard') {
-    const el = document.getElementById('viewDashboard');
-    if (el) el.classList.remove('hidden');
-    document.getElementById('pageTitle').innerHTML = '<span>1. Dashboard Điều Hành</span>';
-    loadDashboardData();
-  } else if (viewId === 'teacherDashboard') {
-    const el = document.getElementById('viewTeacherDashboard');
-    if (el) el.classList.remove('hidden');
-    document.getElementById('pageTitle').innerHTML = '<span>Dashboard Giáo Viên</span>';
-    loadTeacherDashboardView();
-  } else if (viewId === 'hocsinh') {
-    const el = document.getElementById('viewHocSinh');
-    if (el) el.classList.remove('hidden');
-    document.getElementById('pageTitle').innerHTML = '<span>2. Quản Lý Hồ Sơ Học Sinh</span>';
-    loadStudentsView();
-  } else if (viewId === 'lophoc') {
-    const el = document.getElementById('viewLopHoc');
-    if (el) el.classList.remove('hidden');
-    document.getElementById('pageTitle').innerHTML = '<span>3. Quản Lý Danh Sách Lớp Học</span>';
-    loadClassesView();
-  } else if (viewId === 'diemdanh') {
-    const el = document.getElementById('viewDiemDanh');
-    if (el) el.classList.remove('hidden');
-    document.getElementById('pageTitle').innerHTML = '<span>4. Sổ Điểm Danh Toàn Lớp</span>';
-    loadAttendanceList();
-  } else if (viewId === 'hocphi') {
-    const el = document.getElementById('viewHocPhi');
-    if (el) el.classList.remove('hidden');
-    document.getElementById('pageTitle').innerHTML = '<span>5. Quản Lý Học Phí & Công Nợ</span>';
-    loadTuitionView();
-  } else if (viewId === 'giaovien') {
-    const el = document.getElementById('viewGiaoVien');
-    if (el) el.classList.remove('hidden');
-    document.getElementById('pageTitle').innerHTML = '<span>6. Bảng Lương Giáo Viên Theo Tháng</span>';
-    loadTeacherPayrollView();
-  } else if (viewId === 'thuchi') {
-    const el = document.getElementById('viewThuChi');
-    if (el) el.classList.remove('hidden');
-    document.getElementById('pageTitle').innerHTML = '<span>7. Sổ Quỹ Thu - Chi Theo Tháng</span>';
-    loadCashBookView();
-  } else if (viewId === 'giaoVienLop') {
-    const el = document.getElementById('viewGiaoVienLop');
-    if (el) el.classList.remove('hidden');
-    document.getElementById('pageTitle').innerHTML = '<span>Danh Sách Lớp Của Tôi</span>';
-    loadTeacherClassesView();
-  } else if (viewId === 'thongbao') {
-    const el = document.getElementById('viewThongBao');
-    if (el) el.classList.remove('hidden');
-    document.getElementById('pageTitle').innerHTML = '<span>8. Quản Lý Thông Báo Giáo Viên</span>';
-    loadNoticeView();
-  }
-}
+      if (viewId === 'dashboard') {
+        const el = document.getElementById('viewDashboard');
+        if (el) el.classList.remove('hidden');
+        document.getElementById('pageTitle').innerHTML = '<span>1. Dashboard Điều Hành</span>';
+        loadDashboardData();
+      } else if (viewId === 'teacherDashboard') {
+        const el = document.getElementById('viewTeacherDashboard');
+        if (el) el.classList.remove('hidden');
+        document.getElementById('pageTitle').innerHTML = '<span>Dashboard Giáo Viên</span>';
+        loadTeacherDashboardView();
+      } else if (viewId === 'hocsinh') {
+        const el = document.getElementById('viewHocSinh');
+        if (el) el.classList.remove('hidden');
+        document.getElementById('pageTitle').innerHTML = '<span>2. Quản Lý Hồ Sơ Học Sinh</span>';
+        loadStudentsView();
+      } else if (viewId === 'lophoc') {
+        const el = document.getElementById('viewLopHoc');
+        if (el) el.classList.remove('hidden');
+        document.getElementById('pageTitle').innerHTML = '<span>3. Quản Lý Danh Sách Lớp Học</span>';
+        loadClassesView();
+      } else if (viewId === 'diemdanh') {
+        const el = document.getElementById('viewDiemDanh');
+        if (el) el.classList.remove('hidden');
+        document.getElementById('pageTitle').innerHTML = '<span>4. Sổ Điểm Danh Toàn Lớp</span>';
+        loadAttendanceList();
+      } else if (viewId === 'hocphi') {
+        const el = document.getElementById('viewHocPhi');
+        if (el) el.classList.remove('hidden');
+        document.getElementById('pageTitle').innerHTML = '<span>5. Quản Lý Học Phí & Công Nợ</span>';
+        loadTuitionView();
+      } else if (viewId === 'giaovien') {
+        const el = document.getElementById('viewGiaoVien');
+        if (el) el.classList.remove('hidden');
+        document.getElementById('pageTitle').innerHTML = '<span>6. Bảng Lương Giáo Viên Theo Tháng</span>';
+        loadTeacherPayrollView();
+      } else if (viewId === 'thuchi') {
+        const el = document.getElementById('viewThuChi');
+        if (el) el.classList.remove('hidden');
+        document.getElementById('pageTitle').innerHTML = '<span>7. Sổ Quỹ Thu - Chi Theo Tháng</span>';
+        loadCashBookView();
+      } else if (viewId === 'giaoVienLop') {
+        const el = document.getElementById('viewGiaoVienLop');
+        if (el) el.classList.remove('hidden');
+        document.getElementById('pageTitle').innerHTML = '<span>Danh Sách Lớp Của Tôi</span>';
+        loadTeacherClassesView();
+      } else if (viewId === 'thongbao') {
+        const el = document.getElementById('viewThongBao');
+        if (el) el.classList.remove('hidden');
+        document.getElementById('pageTitle').innerHTML = '<span>8. Quản Lý Thông Báo Giáo Viên</span>';
+        loadNoticeView();
+      }
+    }
 
     function refreshCurrentView() {
       const monthTag = getSelectedMonth();
@@ -1662,8 +1781,7 @@ const URL_THOI_KHOA_BIEU = "https://script.google.com/macros/s/AKfycbwmjQAmrqoMm
         }
       }).getClasses(monthTag);
 
-      if (currentView === 'teacherDashboard') loadTeacherDashboardView();
-      else if (currentView === 'giaoVienLop') loadTeacherClassesView();
+      if (currentView === 'giaoVienLop') loadTeacherClassesView();
       else if (currentView === 'diemdanh') loadAttendanceList();
       else if (currentView === 'hocphi') loadTuitionView();
       else if (currentView === 'giaovien') loadTeacherPayrollView();
@@ -1710,9 +1828,7 @@ const URL_THOI_KHOA_BIEU = "https://script.google.com/macros/s/AKfycbwmjQAmrqoMm
           : `<b class="text-emerald-700 font-black">✓ Không có học sinh nợ học phí</b>`;
       }
 
-      // 1. Render 6 Thẻ KPI kèm nhãn tháng trước thực tế
       const trends = d.kpiTrends || {};
-      
       const currentMonthTag = (d.currentMonthTag || getSelectedMonth()).toUpperCase();
       const curNum = parseInt(currentMonthTag.replace(/[^0-9]/g, ''), 10) || 8;
       const prevNum = curNum === 1 ? 12 : curNum - 1;
@@ -1750,7 +1866,6 @@ const URL_THOI_KHOA_BIEU = "https://script.google.com/macros/s/AKfycbwmjQAmrqoMm
       }
       renderTrendBadge('kpiProfitTrend', trends.profit, 'VNĐ', true, prevTag);
 
-      // 2. Render Biến động học sinh
       const badgeMonth = document.getElementById('badgeStudentMonth');
       if (badgeMonth) badgeMonth.innerText = `Kỳ ${d.currentMonthTag}`;
 
@@ -1770,8 +1885,7 @@ const URL_THOI_KHOA_BIEU = "https://script.google.com/macros/s/AKfycbwmjQAmrqoMm
         growthRateEl.innerText = (trends.students && trends.students.diffPercent >= 0 ? '+' : '') + (trends.students ? trends.students.diffPercent : 0) + '%';
       }
 
-      // 3. Render Biểu đồ 12 tháng Biến động học sinh
-      if (d.studentTrend12Months) {
+      if (d.studentTrend12Months && d.studentTrend12Months.length > 0) {
         rawStudentTrend12Months = d.studentTrend12Months;
         renderStudentGrowthChart('all');
       }
@@ -1814,7 +1928,8 @@ const URL_THOI_KHOA_BIEU = "https://script.google.com/macros/s/AKfycbwmjQAmrqoMm
         `).join('') : '<tr><td colspan="3" class="p-4 text-center text-slate-400">Không có học sinh cần chú ý.</td></tr>';
       }
 
-      loadSystemLogsUI();
+      clearTimeout(window.__hmLogTimer);
+      window.__hmLogTimer = setTimeout(loadSystemLogsUI, 350);
     }
 
     function renderTrendBadge(elementId, trendObj, unit, isPositiveGood, prevMonthText) {
@@ -1858,9 +1973,17 @@ const URL_THOI_KHOA_BIEU = "https://script.google.com/macros/s/AKfycbwmjQAmrqoMm
       `;
     }
 
-    function renderStudentGrowthChart(rangeType) {
+    async function renderStudentGrowthChart(rangeType) {
       const canvas = document.getElementById('chartStudentGrowthTrend');
       if (!canvas) return;
+
+      try {
+        await ensureChartJs();
+      } catch (err) {
+        console.error('Không tải được Chart.js:', err);
+        return;
+      }
+
       const ctx = canvas.getContext('2d');
       if (chartStudentGrowthInst) chartStudentGrowthInst.destroy();
 
@@ -2246,7 +2369,10 @@ const URL_THOI_KHOA_BIEU = "https://script.google.com/macros/s/AKfycbwmjQAmrqoMm
       document.getElementById('importExcelModal').classList.add('hidden'); 
     }
 
-    function downloadSampleExcel() {
+    async function downloadSampleExcel() {
+      try { await ensureXlsx(); }
+      catch (err) { alert('Không tải được module Excel. Vui lòng thử lại.'); return; }
+
       const sampleData = [{ 'Mã HS': 'HS00001', 'Họ và Tên': 'Nguyễn Văn An', 'Ngày Sinh': '15/08/2010', 'Giới Tính': 'Nam', 'Tên Phụ Huynh': 'Nguyễn Văn Ba', 'Số Điện Thoại': '0901234567', 'Lớp Học': 'TOAN10', 'Trạng Thái': 'Đang học' }];
       const ws = XLSX.utils.json_to_sheet(sampleData);
       const wb = XLSX.utils.book_new();
@@ -2254,10 +2380,14 @@ const URL_THOI_KHOA_BIEU = "https://script.google.com/macros/s/AKfycbwmjQAmrqoMm
       XLSX.writeFile(wb, 'Mau_Danh_Sach_Hoc_Sinh.xlsx');
     }
 
-    function processExcelUpload() {
+    async function processExcelUpload() {
       const fileInput = document.getElementById('excelFileInput');
       if (!fileInput.files || fileInput.files.length === 0) return alert('Vui lòng chọn file Excel!');
       const file = fileInput.files[0];
+
+      try { await ensureXlsx(); }
+      catch (err) { return alert('Không tải được module Excel. Vui lòng thử lại.'); }
+
       const reader = new FileReader();
       const btn = document.getElementById('btnUploadExcel');
       const monthTag = getSelectedMonth();
@@ -2502,18 +2632,26 @@ const URL_THOI_KHOA_BIEU = "https://script.google.com/macros/s/AKfycbwmjQAmrqoMm
       const filterLop = (filterSel && filterSel.value !== '-- Tất cả các lớp --') ? filterSel.value : '';
       const curNum = monthTag.replace(/[^0-9]/g, '');
       const tb = document.getElementById('tableTuitionBody');
-      tb.innerHTML = `<tr><td colspan="8" class="p-6 text-center text-blue-700 font-bold"><i class="fa-solid fa-spinner fa-spin mr-2"></i>Đang nạp dữ liệu học phí Tháng ${curNum}...</td></tr>`;
+      const checkAll = document.getElementById('checkAllTuition');
+      if (checkAll) checkAll.checked = false;
+      updateBulkPayButtonState();
+
+      tb.innerHTML = `<tr><td colspan="9" class="p-6 text-center text-blue-700 font-bold"><i class="fa-solid fa-spinner fa-spin mr-2"></i>Đang nạp dữ liệu học phí Tháng ${curNum}...</td></tr>`;
 
       google.script.run
         .withSuccessHandler(function(res) {
           if (res && res.success) {
-            if (!res.data || res.data.length === 0) {
-              tb.innerHTML = `<tr><td colspan="8" class="p-8 text-center text-slate-500 font-medium">Chưa có dữ liệu học phí Tháng ${curNum}. Hãy bấm nút <b>"Áp Dụng Cho Cả Lớp"</b> ở góc trên để tạo danh sách thu cho học sinh.</td></tr>`;
+            currentLoadedTuitionList = res.data || [];
+            if (currentLoadedTuitionList.length === 0) {
+              tb.innerHTML = `<tr><td colspan="9" class="p-8 text-center text-slate-500 font-medium">Chưa có dữ liệu học phí Tháng ${curNum}. Hãy bấm nút <b>"Áp Dụng Cho Cả Lớp"</b> ở góc trên để tạo danh sách thu cho học sinh.</td></tr>`;
               return;
             }
 
-            tb.innerHTML = res.data.map(h => `
+            tb.innerHTML = currentLoadedTuitionList.map((h, idx) => `
               <tr class="hover:bg-slate-50 transition">
+                <td class="p-3.5 text-center">
+                  ${h.conNo > 0 ? `<input type="checkbox" class="tuition-row-checkbox w-4 h-4 rounded border-slate-300 text-blue-600 cursor-pointer" onchange="updateBulkPayButtonState()" data-index="${idx}">` : `<i class="fa-solid fa-check text-emerald-600"></i>`}
+                </td>
                 <td class="p-3.5 font-mono text-slate-500 font-bold">${h.maHD}</td>
                 <td class="p-3.5 font-black text-slate-900">${h.tenHS} <span class="text-slate-400 font-normal">(${h.maHS})</span></td>
                 <td class="p-3.5"><span class="bg-blue-100 text-blue-900 border border-blue-300 px-2.5 py-1 rounded-lg font-black">${h.maLop}</span></td>
@@ -2522,19 +2660,99 @@ const URL_THOI_KHOA_BIEU = "https://script.google.com/macros/s/AKfycbwmjQAmrqoMm
                 <td class="p-3.5 font-black text-rose-600">${(h.conNo || 0).toLocaleString('vi-VN')} đ</td>
                 <td class="p-3.5"><span class="px-2.5 py-1 rounded-full text-[10px] font-black ${h.trangThai === 'ĐÃ THANH TOÁN' ? 'bg-emerald-100 text-emerald-800 border border-emerald-200' : 'bg-rose-100 text-rose-800 border border-rose-200'}">${h.trangThai}</span></td>
                 <td class="p-3.5 text-center space-x-2 whitespace-nowrap">
-                  <button type="button" onclick="openEditStudentTuitionModal('${h.sheetName}', ${h.rowIndex}, '${h.tenHS}', '${h.maLop}', ${h.soTien}, ${h.giamGia}, ${h.daDong}, '${h.hanDong}')" class="text-blue-700 hover:text-blue-900 font-bold px-2.5 py-1 rounded-lg bg-blue-50 border border-blue-200 hover:bg-blue-100 transition">Sửa</button>
-                  ${h.conNo > 0 ? `<button type="button" onclick="openPayModal('${h.sheetName}', ${h.rowIndex}, '${h.tenHS}', '${h.maLop}', ${h.conNo})" class="bg-emerald-600 hover:bg-emerald-700 text-white px-3 py-1 rounded-xl text-xs font-black shadow transition">Thu Tiền (${(h.conNo || 0).toLocaleString('vi-VN')} đ)</button>` : '<span class="text-emerald-700 font-black">✓ Đã đủ</span>'}
+                  <button type="button" onclick="openEditStudentTuitionModal('${h.sheetName}', ${h.rowIndex}, '${h.tenHS.replace(/'/g, "\\'")}', '${h.maLop}', ${h.soTien}, ${h.giamGia}, ${h.daDong}, '${h.hanDong}')" class="text-blue-700 hover:text-blue-900 font-bold px-2.5 py-1 rounded-lg bg-blue-50 border border-blue-200 hover:bg-blue-100 transition">Sửa</button>
+                  ${h.conNo > 0 ? `<button type="button" onclick="openPayModal('${h.sheetName}', ${h.rowIndex}, '${h.tenHS.replace(/'/g, "\\'")}', '${h.maLop}', ${h.conNo})" class="bg-emerald-600 hover:bg-emerald-700 text-white px-3 py-1 rounded-xl text-xs font-black shadow transition">Thu Tiền (${(h.conNo || 0).toLocaleString('vi-VN')} đ)</button>` : '<span class="text-emerald-700 font-black">✓ Đã đủ</span>'}
                 </td>
               </tr>
             `).join('');
           } else {
-            tb.innerHTML = `<tr><td colspan="8" class="p-6 text-center text-rose-600 font-bold">Lỗi tải dữ liệu: ${res ? res.message : 'Không xác định'}</td></tr>`;
+            tb.innerHTML = `<tr><td colspan="9" class="p-6 text-center text-rose-600 font-bold">Lỗi tải dữ liệu: ${res ? res.message : 'Không xác định'}</td></tr>`;
           }
         })
         .withFailureHandler(function(err) {
-          tb.innerHTML = `<tr><td colspan="8" class="p-6 text-center text-rose-600 font-bold">Lỗi kết nối máy chủ: ${err.message || err}</td></tr>`;
+          tb.innerHTML = `<tr><td colspan="9" class="p-6 text-center text-rose-600 font-bold">Lỗi kết nối máy chủ: ${err.message || err}</td></tr>`;
         })
         .getMonthlyTuition(monthTag, filterLop);
+    }
+
+    function toggleSelectAllTuition(masterCheckbox) {
+      const checkboxes = document.querySelectorAll('.tuition-row-checkbox');
+      checkboxes.forEach(cb => cb.checked = masterCheckbox.checked);
+      updateBulkPayButtonState();
+    }
+
+    function getSelectedTuitionItems() {
+      const selected = [];
+      const checkboxes = document.querySelectorAll('.tuition-row-checkbox:checked');
+      checkboxes.forEach(cb => {
+        const idx = parseInt(cb.getAttribute('data-index'), 10);
+        if (currentLoadedTuitionList[idx]) {
+          const item = currentLoadedTuitionList[idx];
+          selected.push({
+            sheetName: item.sheetName,
+            rowIndex: item.rowIndex,
+            amount: item.conNo,
+            maHS: item.maHS,
+            tenHS: item.tenHS
+          });
+        }
+      });
+      return selected;
+    }
+
+    function updateBulkPayButtonState() {
+      const selected = getSelectedTuitionItems();
+      const btn = document.getElementById('btnBulkPay');
+      const countEl = document.getElementById('selectedTuitionCount');
+      if (btn && countEl) {
+        countEl.innerText = selected.length;
+        if (selected.length > 0) {
+          btn.classList.remove('hidden');
+        } else {
+          btn.classList.add('hidden');
+        }
+      }
+    }
+
+    function openBulkPayModal() {
+      const selected = getSelectedTuitionItems();
+      if (selected.length === 0) return alert('Vui lòng tích chọn ít nhất 1 học sinh!');
+
+      const total = selected.reduce((sum, item) => sum + item.amount, 0);
+      document.getElementById('bulkCountDisplay').innerText = `${selected.length} học sinh`;
+      document.getElementById('bulkTotalDisplay').innerText = `${total.toLocaleString('vi-VN')} đ`;
+      document.getElementById('bulkPayModal').classList.remove('hidden');
+    }
+
+    function closeBulkPayModal() {
+      document.getElementById('bulkPayModal').classList.add('hidden');
+    }
+
+    function submitBulkPayAction() {
+      const selected = getSelectedTuitionItems();
+      if (selected.length === 0) return;
+
+      const method = document.getElementById('bulkPayMethodSelect').value;
+      const btn = document.getElementById('btnSubmitBulkPay');
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-1"></i> Đang thu...';
+      btn.disabled = true;
+
+      google.script.run
+        .withSuccessHandler(function(res) {
+          btn.innerHTML = '✓ Xác Nhận Thu Tất Cả';
+          btn.disabled = false;
+          alert(res.message);
+          if (res.success) {
+            closeBulkPayModal();
+            loadTuitionView();
+          }
+        })
+        .withFailureHandler(function(err) {
+          btn.innerHTML = '✓ Xác Nhận Thu Tất Cả';
+          btn.disabled = false;
+          alert('Lỗi: ' + (err.message || err));
+        })
+        .payTuitionBulk(selected, method);
     }
 
     function openEditStudentTuitionModal(sheetName, rowIndex, tenHS, maLop, soTien, giamGia, daDong, hanDong) {
@@ -2638,135 +2856,6 @@ const URL_THOI_KHOA_BIEU = "https://script.google.com/macros/s/AKfycbwmjQAmrqoMm
       if (cls) document.getElementById('tuitionAmountInput').value = cls.hocPhiThang || 480000;
     }
 
-    let currentLoadedTuitionList = [];
-
-    function loadTuitionView() {
-      const monthTag = getSelectedMonth();
-      const filterSel = document.getElementById('filterTuitionByClassSelect');
-      const filterLop = (filterSel && filterSel.value !== '-- Tất cả các lớp --') ? filterSel.value : '';
-      const curNum = monthTag.replace(/[^0-9]/g, '');
-      const tb = document.getElementById('tableTuitionBody');
-      const checkAll = document.getElementById('checkAllTuition');
-      if (checkAll) checkAll.checked = false;
-      updateBulkPayButtonState();
-
-      tb.innerHTML = `<tr><td colspan="9" class="p-6 text-center text-blue-700 font-bold"><i class="fa-solid fa-spinner fa-spin mr-2"></i>Đang nạp dữ liệu học phí Tháng ${curNum}...</td></tr>`;
-
-      google.script.run
-        .withSuccessHandler(function(res) {
-          if (res && res.success) {
-            currentLoadedTuitionList = res.data || [];
-            if (currentLoadedTuitionList.length === 0) {
-              tb.innerHTML = `<tr><td colspan="9" class="p-8 text-center text-slate-500 font-medium">Chưa có dữ liệu học phí Tháng ${curNum}. Hãy bấm nút <b>"Áp Dụng Cho Cả Lớp"</b> ở góc trên để tạo danh sách thu cho học sinh.</td></tr>`;
-              return;
-            }
-
-            tb.innerHTML = currentLoadedTuitionList.map((h, idx) => `
-              <tr class="hover:bg-slate-50 transition">
-                <td class="p-3.5 text-center">
-                  ${h.conNo > 0 ? `<input type="checkbox" class="tuition-row-checkbox w-4 h-4 rounded border-slate-300 text-blue-600 cursor-pointer" onchange="updateBulkPayButtonState()" data-index="${idx}">` : `<i class="fa-solid fa-check text-emerald-600"></i>`}
-                </td>
-                <td class="p-3.5 font-mono text-slate-500 font-bold">${h.maHD}</td>
-                <td class="p-3.5 font-black text-slate-900">${h.tenHS} <span class="text-slate-400 font-normal">(${h.maHS})</span></td>
-                <td class="p-3.5"><span class="bg-blue-100 text-blue-900 border border-blue-300 px-2.5 py-1 rounded-lg font-black">${h.maLop}</span></td>
-                <td class="p-3.5 font-extrabold text-slate-800">${(h.soTien || 0).toLocaleString('vi-VN')} đ</td>
-                <td class="p-3.5 font-black text-emerald-700">${(h.daDong || 0).toLocaleString('vi-VN')} đ</td>
-                <td class="p-3.5 font-black text-rose-600">${(h.conNo || 0).toLocaleString('vi-VN')} đ</td>
-                <td class="p-3.5"><span class="px-2.5 py-1 rounded-full text-[10px] font-black ${h.trangThai === 'ĐÃ THANH TOÁN' ? 'bg-emerald-100 text-emerald-800 border border-emerald-200' : 'bg-rose-100 text-rose-800 border border-rose-200'}">${h.trangThai}</span></td>
-                <td class="p-3.5 text-center space-x-2 whitespace-nowrap">
-                  <button type="button" onclick="openEditStudentTuitionModal('${h.sheetName}', ${h.rowIndex}, '${h.tenHS.replace(/'/g, "\\'")}', '${h.maLop}', ${h.soTien}, ${h.giamGia}, ${h.daDong}, '${h.hanDong}')" class="text-blue-700 hover:text-blue-900 font-bold px-2.5 py-1 rounded-lg bg-blue-50 border border-blue-200 hover:bg-blue-100 transition">Sửa</button>
-                  ${h.conNo > 0 ? `<button type="button" onclick="openPayModal('${h.sheetName}', ${h.rowIndex}, '${h.tenHS.replace(/'/g, "\\'")}', '${h.maLop}', ${h.conNo})" class="bg-emerald-600 hover:bg-emerald-700 text-white px-3 py-1 rounded-xl text-xs font-black shadow transition">Thu Tiền (${(h.conNo || 0).toLocaleString('vi-VN')} đ)</button>` : '<span class="text-emerald-700 font-black">✓ Đã đủ</span>'}
-                </td>
-              </tr>
-            `).join('');
-          } else {
-            tb.innerHTML = `<tr><td colspan="9" class="p-6 text-center text-rose-600 font-bold">Lỗi tải dữ liệu: ${res ? res.message : 'Không xác định'}</td></tr>`;
-          }
-        })
-        .withFailureHandler(function(err) {
-          tb.innerHTML = `<tr><td colspan="9" class="p-6 text-center text-rose-600 font-bold">Lỗi kết nối máy chủ: ${err.message || err}</td></tr>`;
-        })
-        .getMonthlyTuition(monthTag, filterLop);
-    }
-function toggleSelectAllTuition(masterCheckbox) {
-      const checkboxes = document.querySelectorAll('.tuition-row-checkbox');
-      checkboxes.forEach(cb => cb.checked = masterCheckbox.checked);
-      updateBulkPayButtonState();
-    }
-
-    function getSelectedTuitionItems() {
-      const selected = [];
-      const checkboxes = document.querySelectorAll('.tuition-row-checkbox:checked');
-      checkboxes.forEach(cb => {
-        const idx = parseInt(cb.getAttribute('data-index'), 10);
-        if (currentLoadedTuitionList[idx]) {
-          const item = currentLoadedTuitionList[idx];
-          selected.push({
-            sheetName: item.sheetName,
-            rowIndex: item.rowIndex,
-            amount: item.conNo,
-            maHS: item.maHS,
-            tenHS: item.tenHS
-          });
-        }
-      });
-      return selected;
-    }
-
-    function updateBulkPayButtonState() {
-      const selected = getSelectedTuitionItems();
-      const btn = document.getElementById('btnBulkPay');
-      const countEl = document.getElementById('selectedTuitionCount');
-      if (btn && countEl) {
-        countEl.innerText = selected.length;
-        if (selected.length > 0) {
-          btn.classList.remove('hidden');
-        } else {
-          btn.classList.add('hidden');
-        }
-      }
-    }
-
-    function openBulkPayModal() {
-      const selected = getSelectedTuitionItems();
-      if (selected.length === 0) return alert('Vui lòng tích chọn ít nhất 1 học sinh!');
-
-      const total = selected.reduce((sum, item) => sum + item.amount, 0);
-      document.getElementById('bulkCountDisplay').innerText = `${selected.length} học sinh`;
-      document.getElementById('bulkTotalDisplay').innerText = `${total.toLocaleString('vi-VN')} đ`;
-      document.getElementById('bulkPayModal').classList.remove('hidden');
-    }
-
-    function closeBulkPayModal() {
-      document.getElementById('bulkPayModal').classList.add('hidden');
-    }
-
-    function submitBulkPayAction() {
-      const selected = getSelectedTuitionItems();
-      if (selected.length === 0) return;
-
-      const method = document.getElementById('bulkPayMethodSelect').value;
-      const btn = document.getElementById('btnSubmitBulkPay');
-      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-1"></i> Đang thu...';
-      btn.disabled = true;
-
-      google.script.run
-        .withSuccessHandler(function(res) {
-          btn.innerHTML = '✓ Xác Nhận Thu Tất Cả';
-          btn.disabled = false;
-          alert(res.message);
-          if (res.success) {
-            closeBulkPayModal();
-            loadTuitionView();
-          }
-        })
-        .withFailureHandler(function(err) {
-          btn.innerHTML = '✓ Xác Nhận Thu Tất Cả';
-          btn.disabled = false;
-          alert('Lỗi: ' + (err.message || err));
-        })
-        .payTuitionBulk(selected, method);
-    }
     function exportTuitionExcel() {
       const monthTag = getSelectedMonth();
       const filterLop = document.getElementById('filterTuitionByClassSelect').value;
@@ -2932,35 +3021,34 @@ function toggleSelectAllTuition(masterCheckbox) {
     }
 
     function openDebtModal() {
-  if (!window.currentDashboardContext) return;
-  const list = window.currentDashboardContext.debtStudentsList || [];
-  const tb = document.getElementById('debtModalBody');
-  
-  tb.innerHTML = list.length ? list.map(h => {
-    // Trích xuất mã tháng từ tên bảng (VD: 'HOC_PHI_T7' -> 't7')
-    const sheetMonthTag = (h.sheetName ? h.sheetName.replace('HOC_PHI_', '') : (h.thang || 't8')).toLowerCase();
+      if (!window.currentDashboardContext) return;
+      const list = window.currentDashboardContext.debtStudentsList || [];
+      const tb = document.getElementById('debtModalBody');
+      
+      tb.innerHTML = list.length ? list.map(h => {
+        const sheetMonthTag = (h.sheetName ? h.sheetName.replace('HOC_PHI_', '') : (h.thang || 't8')).toLowerCase();
 
-    return `
-      <tr class="hover:bg-rose-50 transition">
-        <td class="p-3">
-          <div class="font-black text-slate-900">${h.tenHS} <span class="text-[10px] text-slate-500 font-normal">(${h.maHS})</span></div>
-          <span class="inline-block px-2 py-0.5 mt-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-900 border border-amber-200">
-            Kỳ nợ: ${h.thang || ('Tháng ' + sheetMonthTag.replace('t', ''))}
-          </span>
-        </td>
-        <td class="p-3 font-mono font-bold text-blue-700">${h.maLop}</td>
-        <td class="p-3 text-right text-rose-600 font-black text-xs">${(h.conNo || 0).toLocaleString('vi-VN')} đ</td>
-        <td class="p-3 text-right">
-          <button type="button" onclick="quickGoToTuitionPay('${h.maLop}', '${sheetMonthTag}')" class="bg-rose-600 hover:bg-rose-700 text-white font-black text-[10px] px-2.5 py-1 rounded-lg shadow-sm transition whitespace-nowrap">
-            Xem nợ →
-          </button>
-        </td>
-      </tr>
-    `;
-  }).join('') : '<tr><td colspan="4" class="text-center p-5 text-emerald-700 font-black">Không có học sinh nào nợ học phí!</td></tr>';
-  
-  document.getElementById('debtModal').classList.remove('hidden');
-}
+        return `
+          <tr class="hover:bg-rose-50 transition">
+            <td class="p-3">
+              <div class="font-black text-slate-900">${h.tenHS} <span class="text-[10px] text-slate-500 font-normal">(${h.maHS})</span></div>
+              <span class="inline-block px-2 py-0.5 mt-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-900 border border-amber-200">
+                Kỳ nợ: ${h.thang || ('Tháng ' + sheetMonthTag.replace('t', ''))}
+              </span>
+            </td>
+            <td class="p-3 font-mono font-bold text-blue-700">${h.maLop}</td>
+            <td class="p-3 text-right text-rose-600 font-black text-xs">${(h.conNo || 0).toLocaleString('vi-VN')} đ</td>
+            <td class="p-3 text-right">
+              <button type="button" onclick="quickGoToTuitionPay('${h.maLop}', '${sheetMonthTag}')" class="bg-rose-600 hover:bg-rose-700 text-white font-black text-[10px] px-2.5 py-1 rounded-lg shadow-sm transition whitespace-nowrap">
+                Xem nợ →
+              </button>
+            </td>
+          </tr>
+        `;
+      }).join('') : '<tr><td colspan="4" class="text-center p-5 text-emerald-700 font-black">Không có học sinh nào nợ học phí!</td></tr>';
+      
+      document.getElementById('debtModal').classList.remove('hidden');
+    }
 
     function closeDebtModal() { 
       const modal = document.getElementById('debtModal');
@@ -2995,36 +3083,33 @@ function toggleSelectAllTuition(masterCheckbox) {
     function closeMissingAttModal() { document.getElementById('missingAttModal').classList.add('hidden'); }
     
     function quickGoToTuitionPay(maLop, monthTag) {
-  closeDebtModal();
-  
-  // 1. Tự động đồng bộ dropdown chọn kỳ làm việc sang đúng tháng nợ
-  if (monthTag) {
-    const globalMonth = document.getElementById('globalMonthSelect');
-    if (globalMonth) {
-      globalMonth.value = monthTag.toLowerCase();
-    }
-  }
-
-  // 2. Chuyển sang màn hình Quản lý Học phí
-  navigateView('hocphi');
-
-  // 3. Tải danh sách lớp của đúng tháng đó và lọc theo lớp của học sinh nợ
-  const targetMonth = monthTag || getSelectedMonth();
-  google.script.run
-    .withSuccessHandler(function(res) {
-      if (res && res.success) {
-        globalClassesData = res.data;
-        renderClassesDropdown(globalClassesData);
-        
-        const sel = document.getElementById('filterTuitionByClassSelect');
-        if (sel) {
-          sel.value = maLop;
+      closeDebtModal();
+      
+      if (monthTag) {
+        const globalMonth = document.getElementById('globalMonthSelect');
+        if (globalMonth) {
+          globalMonth.value = monthTag.toLowerCase();
         }
-        loadTuitionView();
       }
-    })
-    .getClasses(targetMonth);
-}
+
+      navigateView('hocphi');
+
+      const targetMonth = monthTag || getSelectedMonth();
+      google.script.run
+        .withSuccessHandler(function(res) {
+          if (res && res.success) {
+            globalClassesData = res.data;
+            renderClassesDropdown(globalClassesData);
+            
+            const sel = document.getElementById('filterTuitionByClassSelect');
+            if (sel) {
+              sel.value = maLop;
+            }
+            loadTuitionView();
+          }
+        })
+        .getClasses(targetMonth);
+    }
 
     function openChangePasswordModal() {
       document.getElementById('cpOldPass').value = '';
