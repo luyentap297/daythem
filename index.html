@@ -1217,7 +1217,7 @@
           const isReadOnly = readOnlyActions.has(prop);
           const cacheKey = prop + ':' + JSON.stringify(args);
 
-          // 1. Cache trong phiên: tránh gọi lại cùng dữ liệu trong 3 phút.
+          // 1. Kiểm tra cache phía client
           if (isReadOnly) {
             const cached = memoryCache.get(cacheKey);
             if (cached && (Date.now() - cached.time < CACHE_TTL)) {
@@ -1225,7 +1225,6 @@
               return;
             }
 
-            // 2. Request coalescing: nhiều nơi cùng gọi một API -> chỉ gửi 1 request.
             const pending = pendingRequests.get(cacheKey);
             if (pending) {
               pending.then(onSuccess).catch(onFailure);
@@ -1236,22 +1235,25 @@
           const controller = new AbortController();
           const timeoutId = setTimeout(() => controller.abort(), 25000);
 
+          // Chuẩn hóa gửi POST dạng text/plain để tránh lỗi Redirect/CORS 405 của Google
           const requestPromise = fetch(APPS_SCRIPT_URL, {
             method: 'POST',
+            mode: 'cors',
+            redirect: 'follow',
             headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-            body: JSON.stringify({ action: prop, args }),
-            signal: controller.signal,
-            cache: 'no-store'
+            body: JSON.stringify({ action: prop, args: args }),
+            signal: controller.signal
           })
-          .then(res => {
-            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          .then(async (res) => {
+            if (!res.ok) {
+              throw new Error(`HTTP ${res.status}: Máy chủ từ chối yêu cầu`);
+            }
             return res.json();
           })
           .then(data => {
             if (isReadOnly && data && data.success) {
               memoryCache.set(cacheKey, { time: Date.now(), data });
             } else if (!isReadOnly) {
-              // Dữ liệu ghi thay đổi có thể làm các cache cũ không còn đúng.
               memoryCache.clear();
             }
             return data;
